@@ -1,0 +1,78 @@
+import { StyleSheet, Text, View, Button, SafeAreaView, TouchableOpacity,Image } from 'react-native'
+import React, { useState, useEffect } from 'react'
+
+const App = () => {
+
+  const [degisken, setDegisken] = useState("yazi");
+  const [sayi, setsayi] = useState(0)
+
+  const f = () => {
+    setsayi(sayi + 1)
+  }
+
+  useEffect(() => {
+
+    console.log(sayi);
+    console.log(degisken);
+
+    return () => {
+     
+    }
+  }, [sayi]);
+
+
+  return ( // Tasarım İşlemleri
+    <SafeAreaView style={styles.view}>
+
+      <Text style={styles.yazi}>
+        {degisken}
+      </Text>
+
+    <View>
+      <Image 
+        style={styles.image}
+        resizeMode={"center"}
+        source={{
+          uri:'data:image/jpeg;base64,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'
+        }}
+      />
+    </View>
+
+      <TouchableOpacity style={styles.touchable} onPress={() => {
+        f();
+      }}>
+        <Text>Tıkla</Text>
+      </TouchableOpacity>
+
+    </SafeAreaView>
+  )
+}
+
+export default App
+
+const styles = StyleSheet.create({ // Stil işlemleri
+
+  view: {
+    backgroundColor: 'orange',
+    flex:1,
+    flexDirection:'row'
+  },
+  yazi:{
+    color:'white',
+    flex:2,
+    fontSize:32
+  },
+  touchable:{
+    flex:1,
+    backgroundColor:'green',
+    borderWidth:1,
+    borderColor:'black',
+    borderRadius:5
+  },
+  image:{
+    width:100,
+    height:100,
+    borderRadius:25
+  }
+
+});
